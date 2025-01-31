@@ -1,0 +1,20 @@
+.myBg-dark{
+    background-color: #181a1c;
+}
+
+.homeImage{
+    margin: 50px 0 0 20px;
+}
+
+.homeImage img{
+    width: 700px;
+}
+
+.headerListItem{
+    font-size: 20px;
+}
+
+.blogInLogo{
+    margin-right: 20px;
+    width: 60px;
+}

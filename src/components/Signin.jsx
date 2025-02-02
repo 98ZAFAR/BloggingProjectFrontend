@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./signin.css";
+import { BlogContext } from "../store/blogStore";
 
 const Signin = () => {
+  const {loginUser} = useContext(BlogContext)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,7 +16,7 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    loginUser(formData);
   };
 
   return (

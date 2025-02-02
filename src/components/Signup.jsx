@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./signup.css";
+import { BlogContext } from "../store/blogStore";
 
 const Signup = () => {
+  const {registerUser} = useContext(BlogContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,7 +17,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    registerUser(formData);
   };
 
   return (

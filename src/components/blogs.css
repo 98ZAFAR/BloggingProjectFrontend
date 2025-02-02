@@ -1,0 +1,8 @@
+.carousel-inner {
+    width: 50%;
+}
+
+.slidingWindow{
+    display: flex;
+    justify-content: center;
+}

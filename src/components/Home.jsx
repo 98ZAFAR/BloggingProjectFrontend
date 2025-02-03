@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { FaUserGraduate, FaUsers, FaBookOpen } from "react-icons/fa";
+import { useContext } from "react";
+import { BlogContext } from "../store/blogStore";
 
 const Home = () => {
+  const { User } = useContext(BlogContext);
   const navigate = useNavigate();
   return (
     <div className="bg-dark text-secondary px-4 py-5 text-center">
@@ -15,24 +18,49 @@ const Home = () => {
             extensive prebuilt components, and powerful JavaScript plugins.
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button
-              type="button"
-              className="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-              onClick={() => navigate('/signup')}
-            >
-              Signup
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-light btn-lg px-4"
-              onClick={() => navigate('/signin')}
-            >
-              Signin
-            </button>
+            {!User._id? (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
+                  onClick={() => navigate("/signup")}
+                >
+                  Register
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-light btn-lg px-4"
+                  onClick={() => navigate("/signin")}
+                >
+                  Login
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
+                  onClick={() => navigate("/blogs")}
+                >
+                  Blogs
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-light btn-lg px-4"
+                  onClick={() => navigate("/create-blog")}
+                >
+                  Create Blog
+                </button>
+              </>
+            )}
           </div>
         </div>
         <div className="homeImage mt-4">
-          <img src="/public/BlogHome.png" alt="Blog Home" className="img-fluid" />
+          <img
+            src="/public/BlogHome.png"
+            alt="Blog Home"
+            className="img-fluid"
+          />
         </div>
       </div>
 
@@ -52,14 +80,16 @@ const Home = () => {
             <FaUsers size={50} className="text-info mb-3" />
             <h4>Community Driven</h4>
             <p>
-              Engage with a vibrant community of writers, readers, and tech enthusiasts.
+              Engage with a vibrant community of writers, readers, and tech
+              enthusiasts.
             </p>
           </div>
           <div className="col-md-4 text-center">
             <FaBookOpen size={50} className="text-info mb-3" />
             <h4>Knowledge Hub</h4>
             <p>
-              Discover and share valuable insights across various topics and domains.
+              Discover and share valuable insights across various topics and
+              domains.
             </p>
           </div>
         </div>

@@ -18,3 +18,7 @@
     margin-right: 20px;
     width: 60px;
 }
+
+.createBlog input::placeholder, .createBlog textarea::placeholder{
+    color: whitesmoke;
+}

@@ -5,7 +5,7 @@ import "./blogs.css";
 
 const Blogs = () => {
   const navigate = useNavigate();
-  const { blogs } = useContext(BlogContext);
+  const { blogs, token } = useContext(BlogContext);
 
   return (
     <div className="container-fluid bg-dark text-light min-vh-100">
@@ -112,7 +112,7 @@ const Blogs = () => {
                     </p>
                     <button
                       className="btn btn-outline-light shadow-sm hover-shadow"
-                      onClick={() => navigate(`/blog/${blog._id}`)}
+                      onClick={() => {token?navigate(`/blog/${blog._id}`):navigate('/signin')}}
                     >
                       Read More
                     </button>

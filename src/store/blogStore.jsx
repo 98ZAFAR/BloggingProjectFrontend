@@ -18,6 +18,7 @@ const BlogProvider = ({ children }) => {
   const [user, setUser] = useState(
     localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
   );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const defaultBlogs = [
     {
@@ -100,6 +101,8 @@ const BlogProvider = ({ children }) => {
         User: user,
         blogs,
         fetchAllPosts,
+        isLoggedIn,
+        setIsLoggedIn,
       }}
     >
       {children}

@@ -1,9 +1,30 @@
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { BlogContext } from "../store/blogStore";
 
 const Header = () => {
+  const {isLoggedIn, setIsLoggedIn} = useContext(BlogContext)
+
+  // Check if user is logged in on initial render
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const scrollToAbout = (event) => {
     event.preventDefault();
     document.getElementById("about-section")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    window.location.href = '/';
   };
 
   return (
@@ -34,9 +55,26 @@ const Header = () => {
             </li>
           </ul>
 
+          {/* Search Form */}
           <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
           </form>
+
+          {/* Conditionally render Login/Logout button */}
+          <div className="ms-auto">
+            {isLoggedIn ? (
+              <button
+                className="btn btn-outline-light px-4 py-2"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/signin" className="btn btn-outline-light px-4 py-2">
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </header>

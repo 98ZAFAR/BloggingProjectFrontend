@@ -4,7 +4,7 @@ import "./signin.css";
 import { BlogContext } from "../store/blogStore";
 
 const Signin = () => {
-  const {loginUser} = useContext(BlogContext)
+  const {loginUser, setIsLoggedIn} = useContext(BlogContext)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,8 +15,9 @@ const Signin = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     loginUser(formData);
+    setIsLoggedIn(true);
   };
 
   return (

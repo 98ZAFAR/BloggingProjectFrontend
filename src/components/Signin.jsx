@@ -59,6 +59,9 @@ const Signin = () => {
               Sign In
             </button>
           </form>
+          <p className="forgot-pass">
+            Forgot Password? <Link to="/forgot-password" className="text-info">Forgot Password</Link>
+          </p>
           <p className="signin-footer">
             Don't have an account? <Link to="/signup" className="text-info">Signup</Link>
           </p>

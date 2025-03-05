@@ -7,6 +7,8 @@ export const BlogContext = createContext({
   token: "",
   loginUser: () => {},
   registerUser: () => {},
+  forgotPassword:() =>{},
+  resetPassword:()=>{},
   blogs: [],
   fetchAllPosts: () => {},
 });
@@ -76,6 +78,40 @@ const BlogProvider = ({ children }) => {
     }
   };
 
+  const forgotPassword = async(email)=>{
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/api/user/forget-password",
+        {email}
+      );
+      if (res) {
+        console.log(res.data);
+
+        navigate("/");
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+      console.log(error);
+    }
+  };
+
+  const resetPassword = async(password, resetToken)=>{
+    try {
+      const res = await axios.post(
+        `http://localhost:3001/api/user/reset-password/${resetToken}`,
+        {newPassword:password}
+      );
+      if (res) {
+        console.log(res.data);
+
+        navigate("/");
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+      console.log(error);
+    }
+  };
+
   const fetchAllPosts = async () => {
     try {
       const res = await axios.get("http://localhost:3001/posts");
@@ -103,6 +139,8 @@ const BlogProvider = ({ children }) => {
         fetchAllPosts,
         isLoggedIn,
         setIsLoggedIn,
+        forgotPassword,
+        resetPassword,
       }}
     >
       {children}

@@ -9,6 +9,8 @@ import Signin from './components/Signin.jsx';
 import Blogs from './components/Blogs.jsx';
 import CreateBlog from './components/CreateBlog.jsx';
 import BlogDetail from './components/BlogDetail.jsx';
+import ForgotPassword from './components/ForgotPassword.jsx';
+import ResetPassword from './components/ResetPassword.jsx';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path:"/blog/:id",
         element:<BlogDetail/>,
+      },
+      {
+        path:"/forgot-password",
+        element:<ForgotPassword/>,
+      },
+      {
+        path:"/reset-password/:resetToken",
+        element:<ResetPassword/>,
       },
     ]
   }
